@@ -50,7 +50,7 @@ const script = (p5: p5) => {
   p5.setup = async () => {
     const canvas = p5.createCanvas(window.innerWidth, window.innerHeight);
     canvas.parent("app");
-    p5.textFont(await p5.loadFont("./src/apercuMono.ttf"));
+    p5.textFont(await p5.loadFont("./apercuMono.ttf"));
     p5.textAlign(p5.CENTER, p5.CENTER);
   };
 
