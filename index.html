@@ -3,24 +3,56 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/mosatype.svg" />
   <link rel="stylesheet" href="src/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mosatype</title>
 </head>
 
 <body>
+  <aside>
+    <div>
+      <h1>Mosatype</h1>
+      <p>Simply type and either randomize everything or play with the settings !</p>
+    </div>
+    <div class="color">
+      <h3>Color</h3>
+      <label for="hue">Hue (color)</label>
+      <input id="hue" name="hue" type="range" value="65" min="0" max="360" step="10">
+      <label for="light">Lightness</label>
+      <input id="light" name="light" type="range" value="8" min="0" max="100" step="5">
+      <label for="chroma">Chroma (intensity)</label>
+      <input id="chroma" name="chroma" type="range" value="288" min="4" max="9" step="1">
+    </div>
+    <div class="grid">
+      <h3>Grid</h3>
+      <label for="columns">Columns</label>
+      <input id="columns" name="columns" type="range" min="4" max="60" step="1">
+      <label for="rows">Rows</label>
+      <input id="rows" name="rows" type="range" min="4" max="60" step="1">
+    </div>
+    <div class="numbers">
+      <h3>Text</h3>
+      <label for="size">Size</label>
+      <input id="size" name="size" type="range" min="9" max="45" step="1">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" name="quantity" type="range" min="0" max="19" step="1">
+    </div>
+  </aside>
   <main id="app">
-    <!-- <input type="text" value="*^=._" autofocus maxlength="10" /> -->
-    <input type="text" value=".:;!?&" autofocus maxlength="10" />
-    <button type="button"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-          <path
-            d="M13.58 13.79c.27.68.42 1.43.42 2.21c0 1.77-.77 3.37-2 4.46A5.93 5.93 0 0 1 8 22c-3.31 0-6-2.69-6-6c0-2.76 1.88-5.1 4.42-5.79" />
-          <path d="M17.58 10.21C20.12 10.9 22 13.24 22 16c0 3.31-2.69 6-6 6a5.93 5.93 0 0 1-4-1.54" />
-          <path d="M6 8a6 6 0 1 0 12 0A6 6 0 1 0 6 8" />
-        </g>
-      </svg></button>
+    <input id="input" name="input" type="text" value=".:;!?&" autofocus maxlength="30" />
+    <button type="button" class="magic-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m3 20l9-7m0-10v10l9 7m-4-8v.015m0-8v.015m4 3.985v.015m-9 10.985v.015m-9-7.015v.015m4-4.015v.015M3 4.015v.015" />
+      </svg>
+    </button>
+    <button type="button" class="settings-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M18 11h.009M14 15h.009M12 6h.009M8 10h.009M3 21L20 4M3 3v18h18" />
+      </svg>
+    </button>
   </main>
   <script type="module" src="/src/main.ts"></script>
 </body>

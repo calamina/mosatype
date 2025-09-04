@@ -6,38 +6,74 @@
   font-display: swap;
 }
 
-[data-selected-theme="base"] {
-  --color-background: oklch(70% 0.05 288);
-  --color-text: oklch(55% 0.06 288);
+:root {
+  --side-width: 15rem;
+  --color-background: oklch(65% 0.08 288);
+  --color-background-dim: oklch(65% 0.08 288 / 30%);
   --color-accent: oklch(92% 0.05 288);
-}
-
-[data-selected-theme="avocado"] {
-  --color-background: oklch(90% 0.09 120);
-  --color-text: oklch(80% 0.09 120);
-  --color-accent: oklch(40% 0.09 120);
-}
-
-[data-selected-theme="coffee"] {
-  --color-background: oklch(15% 0.08 80);
-  --color-text: oklch(30% 0.08 80);
-  --color-accent: oklch(90% 0.08 80);
 }
 
 * {
   font-family: 'apercu', Arial, sans-serif;
-  color: var(--color-text);
+  color: var(--color-background);
 }
 
 body {
   width: 100%;
   height: 100vh;
   display: grid;
+  /* grid-template-columns: 0 auto; */
+  grid-template-columns: var(--side-width) auto;
   place-items: center;
   background-color: var(--color-background);
   margin: 0;
   overflow: hidden;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s, grid-template-columns cubic-bezier(0.68, 0, 0.265, 1.55) 0.3s;
+}
+
+aside {
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  overflow-x: clip;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-bottom: 0.1rem;
+    border-bottom: 1px solid var(--color-background-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  div {
+    padding: 1rem;
+    width: var(--side-width);
+  }
+
+  p {
+    padding-top: 0.15rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    text-wrap: balance;
+  }
+}
+
+main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
 }
 
 canvas {
@@ -51,32 +87,34 @@ canvas {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  z-index: 100;
-  opacity: 0.65;
-  filter: blur(0.5px);
+  opacity: 0.8;
 }
 
 input[type="text"] {
   position: relative;
-  z-index: 999;
-  color: var(--color-text);
+  z-index: 5;
+  color: var(--color-background);
   outline: none;
   border: none;
   padding: 0.5rem 2rem;
   text-align: center;
   border-radius: 2rem;
   background-color: var(--color-accent);
-  transition: background-color 0.2s, color 0.2s;
+  box-shadow: var(--color-background) 0 0 4rem 2rem;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  outline-offset: 4px;
+
+  &:focus {
+    outline: 2px solid var(--color-accent);
+  }
 }
 
 button {
   position: absolute;
   display: grid;
   place-items: center;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 999;
-  color: var(--color-text);
+  z-index: 5;
+  color: var(--color-background);
   outline: none;
   border: none;
   padding: 0.75rem;
@@ -84,10 +122,52 @@ button {
   border-radius: 50%;
   background-color: var(--color-accent);
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  box-shadow: var(--color-background) 0 0 4rem 2rem;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 
   svg {
     height: 1.5rem;
     width: 1.5rem;
+  }
+
+  &.magic-button {
+    top: 2rem;
+    left: 2rem;
+  }
+
+  &.settings-button {
+    bottom: 2rem;
+    left: 2rem;
+  }
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 0.5rem;
+  background: var(--color-background);
+  transition: opacity .2s;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background: var(--color-background);
+    background: var(--color-accent);
+    border: none;
+    border: 2px solid var(--color-background);
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background: var(--color-background);
+    background: var(--color-accent);
+    border: none;
+    border: 2px solid var(--color-background);
+    cursor: pointer;
   }
 }
