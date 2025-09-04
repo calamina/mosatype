@@ -63,7 +63,6 @@ aside {
   p {
     padding-top: 0.15rem;
     font-size: 0.9rem;
-    opacity: 0.7;
     text-wrap: balance;
   }
 }
@@ -74,6 +73,7 @@ main {
   width: 100%;
   display: grid;
   place-items: center;
+  overflow: hidden;
 }
 
 canvas {
@@ -84,7 +84,6 @@ canvas {
   display: block;
   margin: 0 auto;
   padding: 0;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   opacity: 0.8;
@@ -142,18 +141,27 @@ button {
 }
 
 input[type="range"] {
+  -webkit-appearance: none;
   width: 100%;
   height: 8px;
   border-radius: 0.5rem;
   background: var(--color-background);
   transition: opacity .2s;
 
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: var(--color-background);
+    border-radius: 0.5rem;
+  }
+
   &::-webkit-slider-thumb {
+    -webkit-appearance: none;
     appearance: none;
+    margin-top: -0.25rem;
     width: 1rem;
     height: 1rem;
     border-radius: 1rem;
-    background: var(--color-background);
     background: var(--color-accent);
     border: none;
     border: 2px solid var(--color-background);
@@ -164,7 +172,6 @@ input[type="range"] {
     width: 1rem;
     height: 1rem;
     border-radius: 1rem;
-    background: var(--color-background);
     background: var(--color-accent);
     border: none;
     border: 2px solid var(--color-background);
